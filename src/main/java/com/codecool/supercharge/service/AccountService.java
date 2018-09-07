@@ -19,4 +19,8 @@ public class AccountService {
     public Account getAccountByUser(User user){
         return accountRepository.findByUser(user);
     }
+
+    public Account getAccountById(int id) {
+        return accountRepository.findById(id);
+    }
 }

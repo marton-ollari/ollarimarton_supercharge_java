@@ -38,7 +38,7 @@ public class InitializerBean {
         Account account5 = new Account(user5);
 
         Transaction transaction1 = new Transaction(account1, new Date(), "shopping", -2500);
-        Transaction transaction2 = new Transaction(account1, new Date(), "pocket money", 5000);
+        Transaction transaction2 = new Transaction(account1, new Date(), "money", 2500);
 
         userRepository.save(user1);
         userRepository.save(user2);

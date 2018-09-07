@@ -44,6 +44,26 @@ public class SuperchargeController {
         return changeBalance(userid, -amount, event);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/{userid}/transfer/{amount}/{event}/{accountid}", method = RequestMethod.GET)
+    public String transfer(@PathVariable("userid") Integer userid,
+                           @PathVariable("amount") Integer amount,
+                           @PathVariable("event") String event,
+                           @PathVariable("accountid") Integer accountid){
+        User user = userService.getUserById(userid);
+        Account account = accountService.getAccountByUser(user);
+        Account account2 = accountService.getAccountById(accountid);
+        account.changeBalance(-amount);
+        account2.changeBalance(amount);
+        accountService.saveAccount(account);
+        accountService.saveAccount(account2);
+        transactionService.saveTransaction(new Transaction(account, new Date(), event, -amount));
+        transactionService.saveTransaction(new Transaction(account2, new Date(), event, amount));
+        return user.getFirstName() + " " + user.getLastName() + " transfered: "+ Integer.toString(amount) + " to: " + account2.getId();
+
+
+    }
+
     private String changeBalance(int userid, int amount, String event){
         User user = userService.getUserById(userid);
         Account account = accountService.getAccountByUser(user);
