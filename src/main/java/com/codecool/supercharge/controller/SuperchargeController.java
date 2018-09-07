@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 public class SuperchargeController {
+
     @Autowired
     UserService userService;
 
@@ -35,13 +36,17 @@ public class SuperchargeController {
 
     @ResponseBody
     @RequestMapping(value = "/{userid}/deposit/{amount}/{event}", method = RequestMethod.GET)
-    public String deposit(@PathVariable("userid") Integer userid, @PathVariable("amount") Integer amount, @PathVariable("event") String event){
+    public String deposit(@PathVariable("userid") Integer userid,
+                          @PathVariable("amount") Integer amount,
+                          @PathVariable("event") String event){
         return changeBalance(userid, amount, event);
     }
 
     @ResponseBody
     @RequestMapping(value = "/{userid}/withdraw/{amount}/{event}", method = RequestMethod.GET)
-    public String withdraw(@PathVariable("userid") Integer userid, @PathVariable("amount") Integer amount, @PathVariable("event") String event){
+    public String withdraw(@PathVariable("userid") Integer userid,
+                           @PathVariable("amount") Integer amount,
+                           @PathVariable("event") String event){
         return changeBalance(userid, -amount, event);
     }
 
