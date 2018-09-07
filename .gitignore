@@ -115,5 +115,5 @@ buildNumber.properties
 /src/resources/META-INF/persistence.xml
 
 
-src/resources/application\.properties
+src/main/resources/application\.properties
 /tests/resources/application.properties

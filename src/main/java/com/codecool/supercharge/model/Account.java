@@ -1,5 +1,19 @@
 package com.codecool.supercharge.model;
 
-public class Account {
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
+    @OneToOne
+    private User user;
+
+    private int balance;
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    private List<Transaction> transactions;
 }
