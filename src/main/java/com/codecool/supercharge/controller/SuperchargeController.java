@@ -65,7 +65,7 @@ public class SuperchargeController {
 
     @ResponseBody
     @RequestMapping(value = "/{userid}/transactions", method = RequestMethod.GET)
-    public String transfer(@PathVariable("userid") Integer userid){
+    public String transactions(@PathVariable("userid") Integer userid){
         User user = userService.getUserById(userid);
         Account account = accountService.getAccountByUser(user);
         List<Transaction> transactions = account.getTransactions();
