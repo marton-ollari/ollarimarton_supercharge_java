@@ -10,16 +10,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
-    private String password;
+    private String firstName;
+    private String lastName;
 
     @OneToOne
     private Account account;
 
-
-
-
-
-
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.account = new Account(this);
+    }
+    
 
 }

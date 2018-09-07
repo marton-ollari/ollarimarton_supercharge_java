@@ -16,4 +16,9 @@ public class Account {
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     private List<Transaction> transactions;
+
+    public Account(User user) {
+        this.user = user;
+        balance = 0;
+    }
 }

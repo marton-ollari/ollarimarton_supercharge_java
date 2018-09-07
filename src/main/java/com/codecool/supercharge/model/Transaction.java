@@ -19,4 +19,11 @@ public class Transaction {
     private String event;
 
     private int change;
+
+    public Transaction(Account account, Date date, String event, int change) {
+        this.account = account;
+        this.date = date;
+        this.event = event;
+        this.change = change;
+    }
 }
