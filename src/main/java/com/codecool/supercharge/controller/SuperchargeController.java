@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class SuperchargeController {
@@ -60,9 +61,21 @@ public class SuperchargeController {
         transactionService.saveTransaction(new Transaction(account, new Date(), event, -amount));
         transactionService.saveTransaction(new Transaction(account2, new Date(), event, amount));
         return user.getFirstName() + " " + user.getLastName() + " transfered: "+ Integer.toString(amount) + " to: " + account2.getId();
-
-
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/{userid}/transactions", method = RequestMethod.GET)
+    public String transfer(@PathVariable("userid") Integer userid){
+        User user = userService.getUserById(userid);
+        Account account = accountService.getAccountByUser(user);
+        List<Transaction> transactions = account.getTransactions();
+        String returnString = user.getFirstName() + " " + user.getLastName() + "'s transactions: ";
+        for (Transaction transaction : transactions){
+            returnString += transaction.getEvent() + " " + transaction.getChange() + " " + transaction.getDate() + " | ";
+        }
+        return returnString;
+    }
+
 
     private String changeBalance(int userid, int amount, String event){
         User user = userService.getUserById(userid);
