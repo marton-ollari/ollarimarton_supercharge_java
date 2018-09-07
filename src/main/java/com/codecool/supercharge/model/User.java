@@ -13,13 +13,11 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToOne
-    private Account account;
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.account = new Account(this);
+
     }
 
 

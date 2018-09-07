@@ -1,5 +1,6 @@
 package com.codecool.supercharge.service;
 
+import com.codecool.supercharge.model.Account;
 import com.codecool.supercharge.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,4 +10,8 @@ public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    public void saveAccount(Account account){
+        accountRepository.save(account);
+    }
 }
